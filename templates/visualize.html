@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithm Visualization</title>
+</head>
+<body>
+    <h1>Sorting Algorithm Visualization</h1>
+    {% for image in images %}
+        <img src="data:image/png;base64,{{ image }}">
+        <br><br>
+    {% endfor %}
+    <br>
+    <a href="{{ url_for('index') }}">Back</a>
+</body>
+</html>

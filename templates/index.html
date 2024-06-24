@@ -1,0 +1,434 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithm Visualizer</title>
+</head>
+<body>
+    <h1>Sorting Algorithm Visualizer</h1>
+    <form method="post">
+        <label for="numbers">Enter numbers separated by commas:</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <br><br>
+        <label for="algorithm">Choose sorting algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Visualize">
+    </form>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithm Visualizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorting Algorithm Visualizer</h1>
+    <form id="sortForm">
+        <label for="numbers">Enter numbers separated by commas:</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <br><br>
+        <label for="algorithm">Choose sorting algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="bubble">Bubble Sort</option>
+        </select>
+        <br><br>
+        <button type="submit">Visualize</button>
+    </form>
+    <div class="chart-container">
+        <canvas id="sortChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('sortChart').getContext('2d');
+        const sortChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Values',
+                    data: [],
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        document.getElementById('sortForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const numbers = document.getElementById('numbers').value.split(',').map(Number);
+            const algorithm = document.getElementById('algorithm').value;
+            visualizeSorting(numbers, algorithm);
+        });
+
+        async function visualizeSorting(numbers, algorithm) {
+            const response = await fetch('/sort', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ numbers, algorithm })
+            });
+            const steps = await response.json();
+
+            for (let step of steps) {
+                updateChart(step);
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+        }
+
+        function updateChart(data) {
+            sortChart.data.labels = data.map((_, index) => index + 1);
+            sortChart.data.datasets[0].data = data;
+            sortChart.update();
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithm Visualizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorting Algorithm Visualizer</h1>
+    <form id="sortForm">
+        <label for="numbers">Enter numbers separated by commas:</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <br><br>
+        <label for="algorithm">Choose sorting algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="radix">Radix Sort</option>
+        </select>
+        <br><br>
+        <button type="submit">Visualize</button>
+    </form>
+    <div class="chart-container">
+        <canvas id="sortChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('sortChart').getContext('2d');
+        const sortChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Values',
+                    data: [],
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        document.getElementById('sortForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const numbers = document.getElementById('numbers').value.split(',').map(Number);
+            const algorithm = document.getElementById('algorithm').value;
+            visualizeSorting(numbers, algorithm);
+        });
+
+        async function visualizeSorting(numbers, algorithm) {
+            const response = await fetch('/sort', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ numbers, algorithm })
+            });
+            const steps = await response.json();
+
+            for (let step of steps) {
+                updateChart(step);
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+        }
+
+        function updateChart(data) {
+            sortChart.data.labels = data.map((_, index) => index + 1);
+            sortChart.data.datasets[0].data = data;
+            sortChart.update();
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithm Visualizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorting Algorithm Visualizer</h1>
+    <form id="sortForm">
+        <label for="numbers">Enter numbers separated by commas:</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <br><br>
+        <label for="algorithm">Choose sorting algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="radix">Radix Sort</option>
+        </select>
+        <br><br>
+        <button type="submit">Visualize</button>
+    </form>
+    <div class="chart-container">
+        <canvas id="sortChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('sortChart').getContext('2d');
+        const sortChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Values',
+                    data: [],
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000000',
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: function(value, context) {
+                            return value;
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        document.getElementById('sortForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const numbers = document.getElementById('numbers').value.split(',').map(Number);
+            const algorithm = document.getElementById('algorithm').value;
+            visualizeSorting(numbers, algorithm);
+        });
+
+        async function visualizeSorting(numbers, algorithm) {
+            const response = await fetch('/sort', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ numbers, algorithm })
+            });
+            const steps = await response.json();
+
+            for (let step of steps) {
+                updateChart(step);
+                await new Promise(resolve => setTimeout(resolve, 200));
+            }
+        }
+
+        function updateChart(data) {
+            sortChart.data.labels = data.map((_, index) => index + 1);
+            sortChart.data.datasets[0].data = data;
+            sortChart.update();
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting Algorithm Visualizer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorting Algorithm Visualizer</h1>
+    <form id="sortForm">
+        <label for="numbers">Enter numbers separated by commas:</label>
+        <input type="text" id="numbers" name="numbers" required>
+        <br><br>
+        <label for="algorithm">Choose sorting algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="radix">Radix Sort</option>
+        </select>
+        <br><br>
+        <button type="submit">Visualize</button>
+    </form>
+    <div class="chart-container">
+        <canvas id="sortChart"></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('sortChart').getContext('2d');
+        const sortChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Values',
+                    data: [],
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    datalabels: {
+                        color: '#000000',
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: function(value, context) {
+                            return value;
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        document.getElementById('sortForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const numbers = document.getElementById('numbers').value.split(',').map(Number);
+            const algorithm = document.getElementById('algorithm').value;
+            visualizeSorting(numbers, algorithm);
+        });
+
+        async function visualizeSorting(numbers, algorithm) {
+            const response = await fetch('/sort', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ numbers, algorithm })
+            });
+            const steps = await response.json();
+
+            for (let step of steps) {
+                updateChart(step);
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust delay here (1000ms = 1 second)
+            }
+        }
+
+        function updateChart(data) {
+            sortChart.data.labels = data.map((_, index) => index + 1);
+            sortChart.data.datasets[0].data = data;
+            sortChart.update();
+        }
+    </script>
+</body>
+</html>
